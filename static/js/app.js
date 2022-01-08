@@ -1,5 +1,5 @@
 // Get the Roadster endpoint
-const roadster = "http://ergast.com/api/f1/2021/22/laps.json";
+const roadster = "https://ergast.com/api/f1/2021/22/drivers/hamilton/laps.json?limit=1000";
 
 // Fetch the JSON data and console log it
 d3.json(roadster).then(function(data) {
