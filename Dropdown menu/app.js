@@ -1,5 +1,5 @@
-let selector = d3.select("#selDataset");
-let selector2 = d3.select("#selDataset2");
+let selector = d3.select("#selDriver1");
+let selector2 = d3.select("#selDriver2");
 
 
 d3.json("laps.json").then(function(data){ 
