@@ -20,17 +20,17 @@ def getLaps():
     laps['RaceLapNumber'] = laps['LapNumber'] - 1
 
     # Convert timedelta to time in seconds
-    laps['Time'] = laps['Time'].dt.total_seconds()
-    laps['LapTime'] = laps['LapTime'].dt.total_seconds()
-    laps['PitOutTime'] = laps['PitOutTime'].dt.total_seconds()
-    laps['PitInTime'] = laps['PitInTime'].dt.total_seconds()
-    laps['Sector1Time'] = laps['Sector1Time'].dt.total_seconds()
-    laps['Sector2Time'] = laps['Sector2Time'].dt.total_seconds()
-    laps['Sector3Time'] = laps['Sector3Time'].dt.total_seconds()
-    laps['Sector1SessionTime'] = laps['Sector1SessionTime'].dt.total_seconds()
-    laps['Sector2SessionTime'] = laps['Sector2SessionTime'].dt.total_seconds()
-    laps['Sector3SessionTime'] = laps['Sector3SessionTime'].dt.total_seconds()
-    laps['LapStartTime'] = laps['LapStartTime'].dt.total_seconds()
+    laps['Time'] = laps['Time'].dt.total_seconds().round(decimals = 3)
+    laps['LapTime'] = laps['LapTime'].dt.total_seconds().round(decimals = 3)
+    laps['PitOutTime'] = laps['PitOutTime'].dt.total_seconds().round(decimals = 3)
+    laps['PitInTime'] = laps['PitInTime'].dt.total_seconds().round(decimals = 3)
+    laps['Sector1Time'] = laps['Sector1Time'].dt.total_seconds().round(decimals = 3)
+    laps['Sector2Time'] = laps['Sector2Time'].dt.total_seconds().round(decimals = 3)
+    laps['Sector3Time'] = laps['Sector3Time'].dt.total_seconds().round(decimals = 3)
+    laps['Sector1SessionTime'] = laps['Sector1SessionTime'].dt.total_seconds().round(decimals = 3)
+    laps['Sector2SessionTime'] = laps['Sector2SessionTime'].dt.total_seconds().round(decimals = 3)
+    laps['Sector3SessionTime'] = laps['Sector3SessionTime'].dt.total_seconds().round(decimals = 3)
+    laps['LapStartTime'] = laps['LapStartTime'].dt.total_seconds().round(decimals = 3)
 
     # Keep only relevant columns
     laps = laps[['Driver', 'DriverNumber', 'Team', 'RaceLapNumber',
@@ -38,6 +38,9 @@ def getLaps():
                 'Compound', 'Stint', 'TyreLife', 'PitOutTime', 'PitInTime',
                 'Time', 'TrackStatus', 'IsAccurate']]
 
+    laps = laps.fillna(0)
+
+    laps.to_json('Data/laps.json')
     lap_data = laps.to_dict('records')
 
     return(lap_data)
