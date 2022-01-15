@@ -1,6 +1,10 @@
 
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, jsonify, redirect
 from flask_pymongo import PyMongo
+from flask.json import JSONEncoder
+import pandas as pd
+import numpy as np
+import json
 import get_f1
 
 # Create an instance of Flask
@@ -18,8 +22,8 @@ def home():
     return render_template("index.html")
 
 # Route that will trigger the scrape function
-@app.route("/getLaps")
-def getLaps():
+@app.route("/getdata")
+def get_data():
 
     # Run the scrape function and save the results to a variable
     lap_data = get_f1.getLaps()
@@ -28,7 +32,6 @@ def getLaps():
     f1_data.delete_many({})
     f1_data.insert_many(lap_data)
 
-    # Redirect to the scraped data page
     return redirect("/data")
 
 # Route to render data.html template using data from Mongo
@@ -36,10 +39,21 @@ def getLaps():
 def data():
 
     # Find one record of data from the mongo database
-    all_laps = mongo.db.f1_data.find()
+    all_laps = f1_data.find()
 
     # Return template and data
     return render_template("data.html", laps=all_laps)
+
+@app.route("/data/laps")
+def get_laps():
+    all_laps = f1_data.find({}, {"_id": 0})
+    
+    lap_data = []
+
+    for x in all_laps:
+        lap_data.append(x)
+
+    return jsonify(lap_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
