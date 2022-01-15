@@ -55,5 +55,17 @@ def get_laps():
 
     return jsonify(lap_data)
 
+@app.route("/data/laps/ver")
+def get_laps_ver():
+    ver_laps = f1_data.find({"Driver":"VER"}, {"_id": 0})
+    
+    lap_data1 = []
+
+    for x in ver_laps:
+        lap_data1.append(x)
+
+    return jsonify(lap_data1)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
