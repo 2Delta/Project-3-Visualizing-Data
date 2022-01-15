@@ -4,7 +4,7 @@ let selector2 = d3.select("#selDriver2");
 
 d3.json("/data/laps").then(function(data){ 
     
-        console.log(data[60].Driver)
+        // console.log(data[60].Driver)
         console.log(data)
 
         let uniqueNames = new Set(data.map(item => item.Driver));
@@ -26,3 +26,4 @@ d3.json("/data/laps").then(function(data){
 );
 
 function optionChanged(value){console.log(value)}
+function optionChanged2(value){console.log(value)}

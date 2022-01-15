@@ -1,7 +1,12 @@
-.box {
-    min-height: 50px;
-    padding: 5px;
-    margin: 5px;
-    font-weight: 800;
-    color: #fff;
-  }
+/* Remove the default margin and padding from the body. */
+body {
+  padding: 0;
+  margin: 0;
+}
+
+/* Set map, body, and html to 100% of the screen size. */
+#map,
+body,
+html {
+  height: 100%;
+}
