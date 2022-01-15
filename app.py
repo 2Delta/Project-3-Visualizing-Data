@@ -24,7 +24,8 @@ def getLaps():
     # Run the scrape function and save the results to a variable
     lap_data = get_f1.getLaps()
 
-    # Update the Mongo database using update and upsert=True
+    # clear the Mongo database and insert lap data
+    f1_data.delete_many({})
     f1_data.insert_many(lap_data)
 
     # Redirect to the scraped data page
