@@ -1,18 +1,22 @@
-// Get the Roadster endpoint
-const roadster = "https://ergast.com/api/f1/2021/22/drivers/hamilton/laps.json?limit=1000";
-
-// Fetch the JSON data and console log it
-d3.json(roadster).then(function(data) {
+// get data and log
+d3.json("data/laps.json").then(function(data) {
   console.log(data);
 });
+// // Get the Roadster endpoint
+// const roadster = "https://ergast.com/api/f1/2021/22/drivers/hamilton/laps.json?limit=1000";
 
-// Get the capsules endpoint
-const capsules = "http://ergast.com/api/f1/2021/22/qualifying.json";
+// // Fetch the JSON data and console log it
+// d3.json(roadster).then(function(data) {
+//   console.log(data);
+// });
 
-// Fetch the JSON data and console log it
-d3.json(capsules).then(function(data) {
-  console.log(data);
-});
+// // Get the capsules endpoint
+// const capsules = "http://ergast.com/api/f1/2021/22/qualifying.json";
+
+// // Fetch the JSON data and console log it
+// d3.json(capsules).then(function(data) {
+//   console.log(data);
+// });
 
 
 // // select divs
