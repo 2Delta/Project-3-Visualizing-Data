@@ -6,7 +6,7 @@ import numpy as np
 import json
 import pymongo
 
-def get_laps():
+def getLaps():
     # Enable the cache
     ff1.Cache.enable_cache('cache') 
 
@@ -38,6 +38,6 @@ def get_laps():
                 'Compound', 'Stint', 'TyreLife', 'PitOutTime', 'PitInTime',
                 'Time', 'TrackStatus', 'IsAccurate']]
 
-    f1_laps = laps.to_dict('records')
+    lap_data = laps.to_dict('records')
 
-    return(f1_laps)
+    return(lap_data)

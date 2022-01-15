@@ -18,14 +18,14 @@ def home():
     return render_template("index.html")
 
 # Route that will trigger the scrape function
-@app.route("/get_laps")
-def get_laps():
+@app.route("/getLaps")
+def getLaps():
 
     # Run the scrape function and save the results to a variable
-    f1_laps = get_f1.get_laps()
+    lap_data = get_f1.getLaps()
 
     # Update the Mongo database using update and upsert=True
-    f1_data.update({}, f1_data, upsert=True)
+    f1_data.insert_many(lap_data)
 
     # Redirect to the scraped data page
     return redirect("/data")
@@ -35,10 +35,10 @@ def get_laps():
 def data():
 
     # Find one record of data from the mongo database
-    f1_info = mongo.db.f1_data.find_one()
+    all_laps = mongo.db.f1_data.find()
 
     # Return template and data
-    return render_template("data.html")
+    return render_template("data.html", laps=all_laps)
 
 if __name__ == "__main__":
     app.run(debug=True)
